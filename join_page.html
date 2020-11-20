@@ -52,5 +52,187 @@
         <a class="Basic" id="numberFilter">Number of people<br><br><br></a>
 	</div>
 
+	{%for i in range(0,len)%}
+
+		<div class="recommendation" style=" background-image:url({{url_for('static', filename='images/'+TypeToImage[List[i][3]])}})" onclick="chooseEvent({{List[i]}});">
+			<div id='info'>
+				<div id='profile'>
+					<img src="static/images/man.png" id="profileImg" width="60" height="60">
+
+					<i id="name">{{List[i][0]}}</i>
+				</div>
+
+				<i id="date">{{List[i][1]}}<br></i>
+
+				<i id="address">{{List[i][2]}}<br></i>
+			</div>
+
+		</div>
+
+	{%endfor%}
+
+	<div><br><br><br></div>
+
+	<div id="info-section" class="section">
+        <button class='close' onclick="closeThis();">
+        	<img src="static/images/info.png" width="40" height="40">
+        </button>
+        <div id="info-section-title" class="section-title"></div>
+        <a class="Basic" id="host"></a>
+        <i><br></i>
+        <i><br></i>
+        <a class="Basic" id="location"></a>
+        <i><br></i>
+        <i><br></i>
+        <a class="Basic" id="calendar"></a>
+        <i><br></i>
+        <i><br></i>
+        <a class="Basic" id="type"></a>
+        <i><br></i>
+        <div id="line"></div>
+        <p id="info-section-text" class="section-text"></p>
+        <i><br></i>
+        <i><br></i>
+        <i><br></i>
+
+        <div class="progress">
+  			<div class="progress-value" id="myBar"></div>
+		</div>
+
+		<i><br></i>
+
+
+		<div id="buttons">
+			<a href="#" class="btn btn-white btn- animate" id="Join" onclick="clickJoin();">Join</a>
+			<a href="#" class="btn btn-white btn- animate" id="Pin">Pin</a>
+			<a href="#" class="btn btn-white btn- animate" id="Invite">Invite</a>
+		</div>
+
+		<div id='share'>
+			<a class='Basic' style="padding-left:34px; width: 80%">Make this event grow bigger by sharing on your social media</a>
+			<div class="ShareIcons">
+
+                <div class="socialContainer">
+                    <image id="facebook" class="icon" src="{{ url_for('static',filename ='images/facebook.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="instagram" class="icon" src="{{ url_for('static',filename ='images/instagram.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="twitter" class="icon" style = "margin-left: 0px;" src="{{ url_for('static',filename ='images/twitter.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="pinterest" class="icon" src="{{ url_for('static',filename ='images/pinterest.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="snapchat" class="icon" src="{{ url_for('static',filename ='images/snapchat.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="discord" class="icon" style = "margin-left: 0px;"src="{{ url_for('static',filename ='images/discord.png')}}"/>
+                </div>
+
+            </div>
+
+            <div id="chat">
+            	<a class='Basic' style="padding-left:34px; width: 80%">Join the discussion</a>
+
+            	<div class="ShareIcons" style="margin-top: 0px;">
+
+	            	<div class="socialContainer" style="margin-top: -10px;">
+	                    <image id="discord" class="icon" src="{{ url_for('static',filename ='images/discord.png')}}"/>
+	                </div>
+
+	                <div class="socialContainer" style="margin-top: -10px;">
+	                    <image id="messenger" class="icon" src="{{ url_for('static',filename ='images/messenger.png')}}"/>
+	                </div>
+
+	            </div>
+
+	            <div id="void">
+
+	            </div>
+
+            </div>
+
+         
+
+        </div>
+    </div>
+
 </body>
+
+<script type="text/javascript">
+	function openFilters(){
+		document.getElementById('filters-senction').style.marginRight = '0px';
+	}
+
+	function closeFilters(){
+		document.getElementById('filters-senction').style.marginRight = '-600px';
+	}
+
+	var open = false;
+	function TypeFilters(){
+		if(open){
+			document.getElementById('types').style.transition = "0.5s";
+			document.getElementById('types').style.opacity = "0";
+			document.getElementById('types').style.visibility = "hidden";
+			setTimeout(function(){
+				document.getElementById('firstLine').style.marginTop = "20px";
+			},500);
+			open = false;
+		}
+
+		else{
+			document.getElementById('firstLine').style.marginTop = "550px";
+			setTimeout(function(){
+				document.getElementById('types').style.transition = "0.5s";
+				document.getElementById('types').style.opacity = "1";
+				document.getElementById('types').style.visibility = "visible";
+			},500);
+			open = true;
+		}
+	}
+
+	Array.prototype.remove = function() {
+        var what, a = arguments, L = a.length, ax;
+        while (L && this.length) {
+            what = a[--L];
+            while ((ax = this.indexOf(what)) !== -1) {
+                this.splice(ax, 1);
+            }
+        }
+        return this;
+    };
+
+	
+	var chosenTypes = [];
+	function ChooseFilter(div){
+
+
+		if(chosenTypes.includes(div.innerHTML)){
+			div.style.textDecoration = "none";
+			chosenTypes.remove(div.innerHTML);
+			
+		}
+
+		else{
+			div.style.textDecoration = "underline";
+			chosenTypes.push(div.innerHTML);
+
+		}
+
+		console.log(chosenTypes)
+
+	}
+</script>
+
+
+<script type="text/javascript" src="static/javascript/joinPage.js"></script>
+
+</html>
 
