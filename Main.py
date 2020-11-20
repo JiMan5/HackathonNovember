@@ -28,8 +28,7 @@ Users = [
 ]
 
 if __name__ == '__main__':
-    event = Event("party", "toumpa", 5, Types[4], Discription)
-    event.set_date(25, 11, 2020)
+    event = Event("party", "toumpa", "04/11/2020", 5, Types[4], Discription)
 
     event.show_event()
 
