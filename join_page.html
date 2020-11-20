@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='join_page_Styler.css')}}">   
+
+
+</head>
+
+<body>
+	<div id="filterIconContainer" onclick="openFilters();">
+		<img id="filterIcon" src="static/images/menu.png" width="40" height="40">
+	</div>
+
+	<div id="filters-senction" class="section" style="overflow-y: scroll;">
+		<button class='close' onclick="closeFilters();" style="top:38px; right: 60px;">
+        	<img src="static/images/info.png" width="45" height="45">
+        </button>
+        <div id="filters-section-title" class="section-title">Find events based on<br>your mood and tastes</div>
+        <i><br></i>
+        <i><br></i>
+
+        <a class="Basic" id="TypeFilter" onclick="TypeFilters();">Type of event</a>
+        <div id="types">
+        	{%for i in range(0,13)%}
+        		<a class="Basic" onclick="ChooseFilter(this);">{{Types[i]}}</a>
+        		<div id="Void"></div>
+        	{%endfor%}
+        </div>
+        
+        <div class="Line" id="firstLine"></div>
+        
+     
+        <a class="Basic" id="LocationFilter" onclick="LocationFilters();" >Location</a>
+        
+        <div class="Line"></div>
+        
+
+        <a class="Basic" id="DateFilter" onclick="DateFilters();" >Date</a>
+        
+        <div class="Line"></div>
+        
+
+        <a class="Basic" id="HostFilter" onclick="HostFilters();" >Host</a>
+        
+        <div class="Line"></div>
+        
+
+        <a class="Basic" id="numberFilter">Number of people<br><br><br></a>
+	</div>
+
+</body>
+
