@@ -1,3 +1,5 @@
+from Invite import Invite
+
 Types = [
     'programming',
     'photos',
@@ -23,7 +25,10 @@ class User:
     hobbies = [] #list of Types hobbies
     friends = [] #list of users
     score = 0
-    Bookmarks = [] #list of events
+    # eventsToAttend = [] #events that he hasn't attended yet
+    # eventsAttended = [] #events that has already attended
+    bookmarks = [] #list of events
+    invites = [] 
 
     def __init__(self, username, email, password, age, location, hobbies, friends, bookmarks):
         self.username = username
@@ -33,6 +38,13 @@ class User:
         self.location = location
         self.hobbies = hobbies
         self.friends = friends
-        self.Bookmarks = bookmarks
+        self.bookmarks = bookmarks
+
+    def setInvite(self, username, email, event, accept):
+        if accept:
+            self.invites.append(Invite(username, email, event, accept))
+        else:
+            print("The invitation was declined")
+
 
     
