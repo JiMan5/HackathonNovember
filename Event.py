@@ -19,30 +19,26 @@ Types = [
 class Event:
     name = ""
     location = ""
-    date = datetime.datetime.now()
+    date = ""
     max_people = 0
-    discription = ""
+    description = ""
     max_words = 500
     type_of_event = ""
     is_open = False
     users = [] * max_people
-    #__creator = Creator()
 
-    def __init__(self, name, location, maxPeople, type, discription):
+    def __init__(self, name, location, date, maxPeople, type, description):
         self.name = name
         self.location = location
+        self.date = date
         self.max_people = maxPeople
         self.type_of_event = type
-        self.set_discription(discription)
+        self.set_description(description)
 
-    def set_date(self, day, month, year):
-        self.date = datetime.datetime(year, month, day)
-
-    def set_discription(self, discription):
-        numOfWords = len(discription.split())
-        #print(numOfWords)
+    def set_description(self, description):
+        numOfWords = len(description.split())
         if numOfWords < self.max_words:
-            self.discription = discription
+            self.discription = description
         else:
             print('Write less words')
 
@@ -60,7 +56,7 @@ class Event:
         print(self.location)
         print('max people: ' + str(self.max_people))
         print(self.type_of_event)
-        print(self.date.strftime("%x"))
+        print(self.date)
         print(self.discription)
         if self.is_open:
             print("Event is open")
