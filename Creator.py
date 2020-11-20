@@ -1,5 +1,6 @@
 from User import User
 from Event import Event
+from Invite import Invite
 
 class Creator(User):
 
@@ -10,11 +11,13 @@ class Creator(User):
         super().__init__(username, email, password, age, location, hobbies, friends, bookmarks)
 
     def createEvent(self, name, location, date, maxPeople, type, description):
-        myEvent = Event(self, name, location, date, maxPeople, type, description)
-        events.append(myEvent)
+        myEvent = Event(name, location, date, maxPeople, type, description)
+        self.events.append(myEvent)
 
     def invite(self, user, event):
-        invites.append(user)
-        user.setInvite(self, username, email, event)
+        self.invites.append(user)
+        invite = Invite(self, event)
+        self.invites.append(invite)
+        user.setInvite(invite)
     
 
