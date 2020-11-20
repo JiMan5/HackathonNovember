@@ -1,8 +1,7 @@
 from Creator import Creator
 from User import User
-from Event import Event
 
-Discription = "From the outside this house looks magnificent. It has been built with white bricks and has mahogany wooden decorations"
+Description = "From the outside this house looks magnificent. It has been built with white bricks and has mahogany wooden decorations"
 
 
 Types = [
@@ -34,17 +33,13 @@ Users = [
 
 if __name__ == '__main__':
 
-    event = Event("party", "toumpa", "04/11/2020", 5, Types[4], Discription)
+    creator = Creator("John", "John@gmail.com", "dscdsc", 20, "Toumpa", Types[4], 0, 0)
 
-    event.show_event()
+    creator.createEvent("party", "toumpa", "04/11/2020", 5, Types[4], Description)
 
-    event.open_event()
-    event.show_event()
+    creator.invite(Users[0], creator.events[0])
 
-    for i in range(0, 4):
-        event.add_user(Users[0])
 
-    print(event.users)
-    event.remove_user(1)
+    creator.events[0].showEvent()
 
-    print(event.users)
+    print(creator.events[0].users)
