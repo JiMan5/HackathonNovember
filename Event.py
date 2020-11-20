@@ -1,21 +1,3 @@
-import datetime
-
-Types = [
-    'programming',
-    'photos',
-    'painting',
-    'music',
-    'maths',
-    'literature',
-    'gaming',
-    'cooking',
-    'cine',
-    'boardgame',
-    'basket',
-    'tennis',
-    'theater'
-]
-
 class Event:
     name = ""
     location = ""
@@ -65,8 +47,12 @@ class Event:
         print()
 
     #users
+    def is_full(self):
+        return self.max_people == len(self.users)
+
     def add_user(self, user):
-        self.users.append(user)
+        if not self.is_full():
+            self.users.append(user)
 
     def remove_user(self, user_index):
         if user_index > -1:
