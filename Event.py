@@ -30,7 +30,7 @@ class Event:
     def close_event(self):
         self.is_open = False
 
-    def is_open(self):
+    def event_is_open(self):
         return self.is_open
 
     def show_event(self):
