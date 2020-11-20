@@ -1,4 +1,5 @@
 import datetime
+from PIL import Image
 
 Types = [
     'programming',
@@ -35,7 +36,7 @@ class Event:
         self.__maxPeople = maxPeople
         self.__typeOfEvent = type
 
-    def setname(self, name):
+    def setName(self, name):
         self.__name = name
 
     def getName(self):
