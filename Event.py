@@ -1,3 +1,5 @@
+#from User import User
+
 class Event:
     name = ""
     location = ""
