@@ -2,58 +2,58 @@ class Event:
     name = ""
     location = ""
     date = ""
-    max_people = 0
+    maxPeople = 0
     description = ""
-    max_words = 500
-    type_of_event = ""
-    is_open = False
-    users = [] * max_people
+    maxWords = 500
+    typeOfEvent = ""
+    isOpen = False
+    users = [] * maxPeople
 
     def __init__(self, name, location, date, maxPeople, type, description):
         self.name = name
         self.location = location
         self.date = date
-        self.max_people = maxPeople
-        self.type_of_event = type
-        self.set_description(description)
+        self.maxPeople = maxPeople
+        self.typeOfEvent = type
+        self.setDescription(description)
 
-    def set_description(self, description):
+    def setDescription(self, description):
         numOfWords = len(description.split())
-        if numOfWords < self.max_words:
+        if numOfWords < self.maxWords:
             self.discription = description
         else:
             print('Write less words')
 
-    def open_event(self):
-        self.is_open = True
+    def openEvent(self):
+        self.isOpen = True
 
-    def close_event(self):
-        self.is_open = False
+    def closeEvent(self):
+        self.isOpen = False
 
-    def event_is_open(self):
-        return self.is_open
+    def eventIsOpen(self):
+        return self.isOpen
 
-    def show_event(self):
+    def showEvent(self):
         print(self.name)
         print(self.location)
-        print('max people: ' + str(self.max_people))
-        print(self.type_of_event)
+        print('max people: ' + str(self.maxPeople))
+        print(self.typeOfEvent)
         print(self.date)
         print(self.discription)
-        if self.is_open:
+        if self.isOpen:
             print("Event is open")
         else:
             print("Event is currently closed")
         print()
 
     #users
-    def is_full(self):
-        return self.max_people == len(self.users)
+    def isFull(self):
+        return self.maxPeople == len(self.users)
 
-    def add_user(self, user):
-        if not self.is_full():
+    def addUser(self, user):
+        if not self.isFull():
             self.users.append(user)
 
-    def remove_user(self, user_index):
+    def removeUser(self, user_index):
         if user_index > -1:
             self.users.pop(user_index)
