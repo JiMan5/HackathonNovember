@@ -1,13 +1,12 @@
-from Event import Event
+#from Creator import Creator
+#from Event import Event
 
 class Invite:
-    username = ""
-    email = ""
-    event = Event("", "", "", 0, 0, "")
+    creator = 0
+    event = 0
     accept = False
 
-    def __init__(self, username, email, event, accept):
-        self.username = username
-        self.email = email
+    def __init__(self, creator, event):
+        self.creator = creator
         self.event = event
-        self.accept = accept
+        self.accept = False
