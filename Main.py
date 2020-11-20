@@ -38,8 +38,7 @@ if __name__ == '__main__':
     creator.createEvent("party", "toumpa", "04/11/2020", 5, Types[4], Description)
 
     creator.invite(Users[0], creator.events[0])
-
+    Users[0].acceptInvite(0)
 
     creator.events[0].showEvent()
-
     print(creator.events[0].users)
