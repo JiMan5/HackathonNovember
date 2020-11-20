@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register or Login</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='RegisterLoginCSS.css')}}">
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    
+    
+
+
+</head>
+
+
+<body>
+    <div class="Window">
+
+        <div id="myMenu" class="login-register">
+
+            <div class="login_or_register">
+                <button id="Login" class="active">Login</button>
+                <button id="Register">Register</button>
+            </div>
+
+            <div class="inputs" >
+
+                <form id="loginForm">
+                    
+                    <label for="username">USERNAME</label>
+                    <input type="text" name="username" id="usernameLoginID" autocomplete="off">
+                    <label for="password">PASSWORD</label>
+                    <input type="password" name="password" id="passwordLoginID">
+
+
+                    <button  type='button' id="LoginButton" class="submit" >WELCOME BACK</button>
+                    
+                </form>
+
+
+
+
+                <form id="registerForm">
+                    
+                    <label for="username" id="usernameLabel">USERNAME</label>
+                    <input type="text" name="username" id="usernameID" autocomplete="off"/>
+                    <label for="email" id="emailLabel">EMAIL</label>
+                    <input type="email" id="emailID" name="email" autocomplete="off"/>
+                    <label for="password">PASSWORD</label>
+                    <input type="password" id="passwordID" name="password" autocomplete="off"/>
+                    <label for="confirmPassword">CONFIRM PASSWORD</label>
+                    <input type="password" id="confirmPasswordID" name="confirmPassword" autocomplete="off"/>
+
+
+                    <button type='button' id="RegisterButton" class="submit" >GET STARTED</button>
+                    
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="myQuestions" class="questions"> 
+
+            <div class="inputsQuestions">
+
+                <form id="answers">
+
+                    <label for="COUNTRY">COUNTRY</label>
+                    <input list="countries" name="COUNTRY" id="countryID">
+                    <datalist id="countries">
+                        <option value="Greece">
+                    </datalist>
+                    <label for="CITY">CITY</label>
+                    <input list="cities" name="CITY" id="cityID">
+                    <datalist id="cities">
+                        <option value="Thessaloniki">
+                    </datalist>
+                    <label for="ADDRESS">ADDRESS</label>
+                    <input type="text" name="ADDRESS" id="addressID" style="padding: 20px;">
+                    <label for="DATE">DATE OF BIRTH</label>
+                    <input type="date" id="birthID" name="DATE" value="2001-10-10" style="padding: 20px 20px 20px 20px;">
+                    <label for="EDU">CURRENT POSITION</label>
+                    <input list="levels" id="eduID" name="EDU">
+                    <datalist id="levels">
+                        <option value="High School Student"></option>
+                        <option value="College Student"></option>
+                        <option value="Working"></option>
+                        <option value="N/A"></option>
+                    </datalist>
+
+
+                    <button  type='button' id="QuestionsButton" class="submit" >PROCEED</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <div id="myHobbies" class="Hobbies">
+
+            <div class="buttons">
+
+                <div class="Title">
+                    <i>Choose Your Hobbies</i>
+                </div>
+
+                <div class="Choices">
+
+                    <form id="HobbiesAnswers">
+                        <input type="button" id="1" value="Cinema">
+                        <input type="button" id="2" value="Music">
+                        <input type="button" id="3" value="Literature">
+                        <input type="button" id="4" value="Photos">
+                        <input type="button" id="5" value="Painting">
+                        <input type="button" id="6" value="Cooking">
+                        <input type="button" id="7" value="Gaming">
+                        <input type="button" id="8" value="Basket">
+                        <input type="button" id="9" value="Maths">
+                        <input type="button" id="10" value="Board Games">
+                        <input type="button" id="11" value="Programming">
+                        <input type="button" id="12" value="Tennis">
+                        <input type="button" id="13" value="Football">
+                        <input type="button" id="14" value="Theater">
+                    </form>
+
+                </div>
+
+                <div class="yourHobbyAnswer">
+
+                    <input type="text" id="yourHobby" placeholder="Add any other hobby">
+                    <button  type='button' id="HobbiesButton" class="submit" >PROCEED</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+        <div id="myLastQuestions" class="LastQuestions">
+
+            <div class="Profile">
+
+                <form>
+
+                    <div id="profile-container">
+                        <image id="profileImage" src="{{ url_for('static',filename ='images/man.png')}}"/>
+                    </div>
+                    <i>Enter you Profile Image</i>
+                    <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo"
+                    required="" capture>
+                </form>
+
+            </div>
+
+            <div class="doThings">
+
+                <form>
+
+                    <input type="checkbox" id="Agree" name="T&A">
+                    <label id="TnA" for="T&A">Agree with Terms&Agreements</label>
+                    <input type="checkbox" id="Notifications" name="emailConf">
+                    <label for="emailConf">Allow us to send you notifications via Gmail</label>
+
+                </form>
+
+            </div>
+
+            <div class="Share">
+
+                <form>
+
+                    <div class="socialContainer">
+                        <image id="facebook" src="{{ url_for('static',filename ='images/facebook.png')}}"/>
+                    </div>
+                    <div class="socialContainer">
+                        <image id="instagram" src="{{ url_for('static',filename ='images/instagram.png')}}"/>
+                    </div>
+                    <div class="socialContainer">
+                        <image id="twitter" src="{{ url_for('static',filename ='images/twitter.png')}}"/>
+                    </div>
+                    <div class="socialContainer">
+                        <image id="pinterest" src="{{ url_for('static',filename ='images/pinterest.png')}}"/>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="Finish">
+                <button  type='button' id="FinishButton" >BEGIN YOUR JOURNEY</button>
+            </div>
+
+        </div>
+
+    </body>
+
+    <script type="text/javascript" src="static/javascript/RegisterLoginJavascript.js"></script>
+    
+</html>

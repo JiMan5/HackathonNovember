@@ -1,0 +1,627 @@
+html,body, body * { 
+  box-sizing: border-box; 
+  font-family: 'Open Sans', sans-serif; 
+  margin:0;
+  padding:0;
+  color:inherit;
+  background-color:inherit;
+}
+
+body{
+  background-position: relative;
+  background-image: url('images/registerBackground.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+
+
+
+
+.login-register{
+
+  float: left;
+  overflow: hidden;
+  z-index: 0;
+  width:400px;
+  height:430px;
+  margin-left: 50px;
+  margin-right: auto;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding: 2em;
+  box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+  background: linear-gradient(180deg, rgba(65,4,119,1) 0%, rgba(22,147,198,1) 58%, rgba(255,255,255,0.1407913507199755) 82%);
+  color:#ffffff;
+  overflow: hidden;
+}
+
+.questions{
+
+
+  float: left;
+  position: absolute;
+  overflow: hidden;
+  z-index: 20;
+  width:400px;
+  height:640px;
+  margin-left: -400px;
+  margin-right: auto;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding: 2em;
+  box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+  background: linear-gradient(180deg, rgba(65,4,119,1) 0%, rgba(22,147,198,1) 58%, rgba(255,255,255,0.1407913507199755) 82%);
+  color:#ffffff;
+  overflow: hidden;
+}
+
+
+
+
+
+.login_or_register{
+  width: 100%;
+  opacity: 1;
+  margin-bottom: 3em;
+}
+
+.login_or_register button{
+
+  transition: 0.3s;
+  padding-bottom: 10px ;
+  padding-top: 10px;
+  margin-right: 1em;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: solid 2px rgba(255, 255, 255, .0);
+  border-bottom: solid 2px rgba(255, 255, 255, .0);
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+  background: none;
+  outline: none;
+}
+
+.login_or_register button:focus {
+  outline: 0px;
+}
+
+.login_or_register button.active {
+  transition: 1s;
+  border-top: solid 2px white;
+  border-bottom: solid 2px white;
+} 
+
+.inputs{
+  position: relative;
+}
+
+.inputs label{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+
+.inputs input{
+
+  position: sticky;
+  width: 100%;
+  height: 35px;
+  background: rgba(255, 255, 255, .2);
+  border:solid 2px white;
+  border-radius: 5px;
+  outline: 0px;
+  color:white;
+  font-size: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 20px;
+  padding-left: 10px;
+
+  background-image: url('images/remove.png');
+  background-size: 22px;
+  background-position: 97% 50%;
+  background-repeat: no-repeat;
+
+}
+
+
+
+
+.inputs input:focus {
+  transition: 0.6s;
+  background: rgba(255, 255, 255, .0);
+  background-image: url('images/remove.png');
+  background-size: 22px;
+  background-position: 97% 50%;
+  background-repeat: no-repeat;
+}
+
+#usernameLoginID{
+  background-image: none;
+}
+
+#passwordLoginID{
+  background-image: none;
+}
+
+
+
+
+
+button.submit {
+  outline: none;
+    font-family: 'Montserrat', sans-serif; 
+    transition: 1s;
+    font-style: bold;
+    font-size: 1em;
+    text-align: center;
+    width: 100%;
+    height: 35px;
+    border:none;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    margin-top: 50px;
+    margin-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 24px;
+    background-color: rgb(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+
+button.submit:hover{
+  transition: 0.4s;
+  background: rgb(0, 148, 229,0.4);
+}
+
+.inputsQuestions{
+  position: relative;
+}
+
+.inputsQuestions label{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.inputsQuestions input{
+
+  position: sticky;
+  width: 100%;
+  height: 35px;
+  background: rgba(255, 255, 255, .2);
+  border:solid 2px white;
+  border-radius: 5px;
+  outline: 0px;
+  color:white;
+  font-size: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 20px;
+  padding-left: 10px;
+
+  background-image: url('images/remove.png');
+  background-size: 22px;
+  background-position: 97% 50%;
+  background-repeat: no-repeat;
+
+}
+
+#birthID{
+  position: sticky;
+  width: 100%;
+  height: 35px;
+  background: rgba(255, 255, 255, .2);
+  border:solid 2px white;
+  border-radius: 5px;
+  outline: 0px;
+  color:white;
+  font-size: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+
+.inputsQuestions input:focus {
+  transition: 0.6s;
+  background: rgba(255, 255, 255, .0);
+  background-image: url('images/remove.png');
+  background-size: 22px;
+  background-position: 97% 50%;
+  background-repeat: no-repeat;
+}
+
+#birthID:focus{
+  transition: 0.6s;
+  background: rgba(255, 255, 255, .0);
+}
+
+.inputsQuestions input[list]{
+    margin-left:auto;
+    margin-right:auto;
+    outline: none;
+    max-width: 500px;
+    padding: 20px 20px 20px 20px;
+    font: 12px Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: white;
+}
+
+.inputsQuestions input::-webkit-calendar-picker-indicator {
+  opacity:0;
+}
+
+
+.inputsQuestions input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png) no-repeat;
+    background-position: 10px;
+    outline: none;
+    width: 30px;
+    height: 20px;
+    border-width: thin;
+    cursor: pointer;
+}
+
+
+form#loginForm {
+
+  z-index: 0;
+  position: absolute;
+}
+ 
+form#registerForm {
+  left:1000px;
+  position: absolute;
+  z-index: 10;
+  opacity: 0;
+} 
+
+.Hobbies{
+
+  opacity: 0;
+  float: left;
+  position: absolute;
+  overflow: hidden;
+  z-index: 20;
+  width:440px;
+  height:640px;
+  margin-left: -400px;
+  margin-right: auto;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding: 2em;
+  box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+  background: linear-gradient(180deg, rgba(65,4,119,1) 0%, rgba(22,147,198,1) 58%, rgba(255,255,255,0.1407913507199755) 82%);
+  color:#ffffff;
+  overflow: hidden;
+}
+
+.Title{
+  width: 100%;
+  opacity: 1;
+  margin-bottom: 3em;
+}
+
+.Title i{
+
+  padding-bottom: 10px ;
+  padding-top: 10px;
+  margin-right: 1em;
+  padding-bottom: 10px;
+  border-left: 0px;
+  border-right: 0px;
+  border-top:0px;
+  border-bottom: solid 2px white;
+  font-size: 1.5em;
+  color: white;
+  
+  background: none;
+  
+}
+.Choices{
+  float:bottom;
+  width: 100%;
+  height:300px;
+}
+
+.Choices input{
+  
+
+  display: inline-block;
+  float: left;
+  width: auto;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  position: relative;
+  padding:10px;
+  border: solid 2px white;
+  border-radius: 6px;
+  outline: none;
+  
+}
+
+.Choices input:hover{
+  transition: 0.3s;
+  background-color: rgb(255,255,255,0.4);
+}
+
+.Choices input:active{
+  transition: 0.3s;
+  background-color: rgb(255,255,255,0.4);
+}
+
+.yourHobbyAnswer{
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
+.yourHobbyAnswer label{
+  letter-spacing: 0.03em;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-size:1.5em;
+  
+  
+  border-bottom: solid 2px white;
+  
+  width:100%;
+  
+  
+}
+.yourHobbyAnswer input{
+  margin-top:3.5em;
+  width:100%;
+  margin-top:20px;
+  height: 50px;
+  border-top:0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: solid 2px white;
+  outline: none;
+  color: white;
+  padding-bottom:10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.7em;
+}
+
+.yourHobbyAnswer button{
+  outline: none;
+    font-family: 'Montserrat', sans-serif; 
+    transition: 1s;
+    font-style: bold;
+    font-size: 1em;
+    text-align: center;
+    width: 100%;
+    height: 35px;
+    border:none;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    margin-top: 50px;
+    margin-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 24px;
+    background-color: rgb(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+  font-size: 0.7em;
+}
+
+.LastQuestions{
+
+  opacity: 0;
+  float: left;
+  position: absolute;
+  overflow: hidden;
+  z-index: 20;
+  width:440px;
+  height:640px;
+  margin-left: -400px;
+  margin-right: auto;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding: 2em;
+  box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+  background: linear-gradient(180deg, rgba(65,4,119,1) 0%, rgba(22,147,198,1) 58%, rgba(255,255,255,0.1407913507199755) 82%);
+  color:#ffffff;
+  overflow: hidden;
+}
+
+.Profile{
+  float: bottom;
+  width: 100%;
+  
+  padding-bottom: 30px;
+  border-bottom: solid 2px white;
+}
+
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+
+#profile-container {
+    display: inline-block;
+    vertical-align: top;
+    width: 46%;
+
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    border:solid 2px white;
+}
+
+#profile-container img {
+    width: 150px;
+    height: 150px;
+}
+
+.Profile i{
+  margin-top: 3.8em;
+  margin-left: 1em;
+  font-size: 18px;
+  border-bottom: solid 2px white;
+  padding-bottom: 4px;
+  display: inline-block;
+  width: 54%;
+  letter-spacing: 0.5px;
+  @media (max-width: 620px) {
+    width: 100%;
+  }
+}
+
+.doThings{
+  width:100%;
+  height:80px;
+  margin-top: 30px;
+  padding-bottom: 20px;
+  border-bottom: solid 2px white;
+
+}
+
+.doThings input{
+  
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.3); /* IE */
+  -moz-transform: scale(1.3); /* FF */
+  -webkit-transform: scale(1.3); /* Safari and Chrome */
+  -o-transform: scale(1.3); /* Opera */
+  transform: scale(1.3);
+  padding: 10px;
+  display: inline-block;
+  
+
+}
+
+.doThings label{
+  font-size: 17px;
+  width: 90%;
+  display: inline-block;
+  float: bottom;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+#TnA:hover{
+  width: 63%;
+  margin-right: 100px;
+  cursor: pointer;
+  padding-bottom: 1px;
+  border-bottom: solid 2px white;
+}
+
+.Share{
+  width: 100%;
+  display: inline-block;
+  margin-top: 30px;
+
+}
+
+.Share i{
+  width: 100%
+  margin-bottom:10px;
+}
+
+.socialContainer{
+  margin-left: 22px;
+    display: inline-block;
+    float: left;
+    width: 25%;
+
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    
+}
+
+#facebook {
+
+    height: auto; 
+    width: auto; 
+    max-width: 64px; 
+    max-height: 64px;
+}
+
+#facebook:hover{
+  cursor: pointer;
+}
+
+#twitter {
+    height: auto; 
+    width: auto; 
+    max-width: 64px; 
+    max-height: 64px;
+}
+
+#twitter:hover{
+  cursor: pointer;
+}
+
+#instagram {
+    height: auto; 
+    width: auto; 
+    max-width: 64px; 
+    max-height: 64px;
+}
+
+#instagram:hover {
+    cursor: pointer;
+}
+#pinterest {
+    height: auto; 
+    width: auto; 
+    max-width: 64px; 
+    max-height: 64px;
+}
+
+#pinterest:hover {
+    cursor: pointer;
+}
+
+.Finish{
+  margin-top:80px;
+}
+
+.Finish button{
+  outline: none;
+    font-family: 'Montserrat', sans-serif; 
+    transition: 1s;
+    font-style: bold;
+    font-size: 1em;
+    text-align: center;
+    width: 100%;
+    height: 35px;
+    border:none;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    margin-top: 50px;
+    margin-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 24px;
+    background-color: rgb(255, 255, 255, 0.3);
+    cursor: pointer;
+}
