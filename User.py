@@ -1,3 +1,6 @@
+from FriendRequest import FriendRequest
+
+
 Types = [
     'programming',
     'photos',
@@ -22,9 +25,8 @@ class User:
     location = ""
     hobbies = [] #list of Types hobbies
     friends = [] #list of users
+    friendRequests = []
     score = 0
-    # eventsToAttend = [] #events that he hasn't attended yet
-    # eventsAttended = [] #events that has already attended
     bookmarks = [] #list of events
     invites = [] 
 
@@ -50,6 +52,21 @@ class User:
             self.bookmarks.append(event)
             event.addUser(self)
 
+    def addFriendrequest(self, friendRequest):
+        self.friendRequests.append(friendRequest)
+
+    def sendFriendRequest(self, user):
+        friendRequest = FriendRequest(self, user)
+        user.addFriendrequest(friendRequest)
+
+    def addFriend(self, user):
+        self.friends.append(user)
+
+    def acceptFriendRequest(self, indexOfFriendReq):
+        friendRequest = self.friendRequests[indexOfFriendReq]
+        friendRequest.accept == True
+        self.addFriend(friendRequest.user1)
+        friendRequest.user1.addFriend(friendRequest.user2)
 
 
     
