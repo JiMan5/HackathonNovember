@@ -1,3 +1,4 @@
+from Creator import Creator
 from User import User
 from Event import Event
 
@@ -21,13 +22,18 @@ Types = [
 ]
 
 Users = [
-    User("dsfds", "dscdsc", "dscdsc", 4, "sdfsc"),
-    User("dsfds", "dscdsc", "dscdsc", 5, "sdfsc"), 
-    User("dsfds", "dscdsc", "dscdsc", 6, "sdfsc"), 
-    User("dsfds", "dscdsc", "dscdsc", 7, "sdfsc")
+    User("John", "John@gmail.com", "dscdsc", 20, "Toumpa", Types[4], 0, 0),
+    User("Helen", "Helen@gmail.com", "fdvdfv", 24, "Toumpa", Types[4], 0, 0),
+    User("John", "John@gmail.com", "dscdsc", 20, "Toumpa", Types[4], 0, 0),
+    User("John", "John@gmail.com", "dscdsc", 20, "Toumpa", Types[4], 0, 0),
+    User("John", "John@gmail.com", "dscdsc", 20, "Toumpa", Types[4], 0, 0),
+    User("dsfds", "dscdsc", "dscdsc", 5, "sdfsc", "sdfsc", "sdfsc", "sdfsc"), 
+    User("dsfds", "dscdsc", "dscdsc", 6, "sdfsc", "sdfsc", "sdfsc", "sdfsc"), 
+    User("dsfds", "dscdsc", "dscdsc", 7, "sdfsc", "sdfsc", "sdfsc", "sdfsc")
 ]
 
 if __name__ == '__main__':
+
     event = Event("party", "toumpa", "04/11/2020", 5, Types[4], Discription)
 
     event.show_event()
