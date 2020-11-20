@@ -23,17 +23,81 @@
 			</div>
 			
 		</div>
+
+
+
+
+		<div class="join" id="joinID" onclick="redirect_join();">
+
+			<div class="joinInfo">
+				<i id="joinText1">JOIN AN EVENT<br><br></i>
+				<img id="arrow2" src ='static/images/arrow.png' width="36" height="36">
+				<i id="joinText2"><br><br>JOIN AN EVENT AND SEIZE<br>THE OPPORTUNITY TO MEET<br>GREAT NEW PEOPLE</i>
+			</div>
+
+		</div>
+
+		<!-- <div class="joinInfo">
+
+		</div> -->
+	</div>
+
+	<div class="down">
+		<div class="forum" id="forumID">
+			<div class="forumInfo">
+				<i id="forumText1">ENTER THE FORUM<br><br></i>
+				<img id="arrow3" src ='static/images/arrow.png' width="36" height="36">
+				<i id="forumText2"><br><br>ENTER THE FORUM AND TALK<br>WITH THE FRIENDS YOU MET AND<br>WITH THE PEOPLE YOU WILL MEET</i>
+			</div>
+		</div>
+
+		<div class="profile" id="profileID">
+			<div class="profileInfo">
+				<i id="profileText1">PROFILE<br><br></i>
+				<img id="arrow4" src ='static/images/black_arrow.png' width="36" height="36">
+				<i id="profileText2"><br><br>ADJUST YOUR PROFILE<br>AND GIVE THE CHANCE TO OUR<br>USERS TO DISCOVER SOMETHING<br>
+				NEW ABOUT YOURSELF</i>
+			</div>
+		</div>
+	</div>
+
+	<div class="buttonDIV">
+		<button id="button">
+			<img src="static/images/info2.png">
+		</button>
 	</div>
 
 
 
-		
+	<div id="info-section">
+        <button id='close'>
+        	<img src="static/images/info.png">
+        </button>
+        <div class="info-section-title">About This Site</div>
+
+        <p class="info-section-text">This is a space made for<br>people who yearn to meet new<br>people in the era of covid-19<br>and beyond</p>
+
+    </div>
 
 
 </body>
 
 <script>
-	
+	document.getElementById('button').onclick = function(){
+		document.getElementById('info-section').style.marginRight = '0px';
+	}
+
+	document.getElementById('close').onclick = function(){
+		document.getElementById('info-section').style.marginRight = '-460px';
+	}
+
+	function redirect_host(){
+		window.location.href = 'host_page'; 
+	}
+
+	function redirect_join(){
+		window.location.href = 'join_page'; 
+	}
 </script>
 </html>
 
