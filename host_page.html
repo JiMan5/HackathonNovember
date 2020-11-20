@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='host_page_Styler.css')}}">
+
+    
+</head>
+
+<body>
+	<div id="features">
+		<label for="TYPES">Choose type</label>
+		<input list="types" name="TYPES" id="myTypes">
+		<datalist>
+			{%for i in range(0,13)%}
+				<option>{{Types[i]}}</option>
+			{%endfor%}
+		</datalist>
+
+		<label for="CALENDAR">Choose type</label>
+		<input type="date" name="CALENDAR" id="myDate">
+
+		<label for="TITLE"></label>
+		<input type="text" name="TITLE">
+
+		<label for="NUMBER">Volume</label>
+		<input type="range" id="maxNum" name="NUMBER"
+         min="5" max="30">
+  		
+	</div>
+</body>
