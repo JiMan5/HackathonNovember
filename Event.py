@@ -84,8 +84,11 @@ class Event:
     def get_type(self):
         return self.__type_of_event
 
-    def activate_event(self):
+    def open_event(self):
         self.__is_open = True
+
+    def close_events(self):
+        self.__is_open = False
 
     def is_open(self):
         return self.__is_open
