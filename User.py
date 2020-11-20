@@ -41,8 +41,9 @@ class User:
     def setInvite(self, invite):
         self.invites.append(invite)
 
-        if(invite.accept == True):
-            invite.event.addUser(self)
+    def acceptInvite(self, indexOfInvite):
+        self.invites[indexOfInvite].accept == True
+        self.invites[indexOfInvite].event.addUser(self)
 
 
 
