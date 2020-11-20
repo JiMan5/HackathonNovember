@@ -3,7 +3,6 @@ from User import User
 
 Description = "From the outside this house looks magnificent. It has been built with white bricks and has mahogany wooden decorations"
 
-
 Types = [
     'programming','photos','painting','music','maths','literature','gaming','cooking','cine',
     'boardgame','basket','tennis','theater'
@@ -32,7 +31,6 @@ Creators = [
 ]
 
 if __name__ == '__main__':
-
     creator = Creator("John", "John@gmail.com", "dscdsc", 20, "Toumpa", Types[4])
 
     creator.createEvent("party", "toumpa", "04/11/2020", 5, Types[4], Description)
@@ -46,3 +44,10 @@ if __name__ == '__main__':
 
     for i in range(0, len(creator.events[0].users)):
         print(creator.events[0].users[i].username)
+
+    Users[2].sendFriendRequest(Users[3])
+    Users[2].acceptFriendRequest(0)
+
+    #for i in range(0, 2):
+    print(Users[2].friends[0].username)
+    print(Users[3].friends[0].username)
