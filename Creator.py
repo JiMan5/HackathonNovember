@@ -15,7 +15,6 @@ class Creator(User):
         self.events.append(myEvent)
 
     def invite(self, user, event):
-        self.invites.append(user)
         invite = Invite(self, event)
         self.invites.append(invite)
         user.setInvite(invite)
