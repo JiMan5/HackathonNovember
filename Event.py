@@ -25,10 +25,9 @@ class Event:
     __max_words = 500
     __type_of_event = ""
     __is_open = False
-
-    #creator = Creator()
     __users = [] * __max_people
     __num_of_users = 0
+    #__creator = Creator()
 
     def __init__(self, name, location, maxPeople, type, discription):
         self.__name = name
@@ -104,18 +103,30 @@ class Event:
         else:
             print("Event is carently closed")
         print()
+
+    #users
+
+    def is_full(self):
+        return self.__num_of_users == self.__max_people
     
     def add_user(self, user):
-        self.__users[self.__num_of_users] = user
-        self.__num_of_users = self.__num_of_users + 1
+        if not self.is_full:
+            self.__users[self.__num_of_users] = user
+            self.__num_of_users = self.__num_of_users + 1
+        else:
+            print("Event is full")
 
     def add_list_of_users(self, users):
-        self.__users = users
-        self.__num_of_users = len(self.__users)
+        if self.__num_of_users + len(users) < self.__max_people:
+            self.__users = users
+            self.__num_of_users = len(self.__users)
+        else:
+            print("Event can't add so many people")
     
     def get_users(self):
         self.__users
 
     def remove_user(self, user_index):
-        self.__users.pop(user_index)
-        self.__num_of_users = self.__num_of_users - 1
+        if user_index < self.__num_of_users and user_index > -1:
+            self.__users.pop(user_index)
+            self.__num_of_users = self.__num_of_users - 1
