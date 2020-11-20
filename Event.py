@@ -95,13 +95,14 @@ class Event:
     def show_event(self):
         print(self.__name)
         print(self.__location)
+        print('max people: ' + str(self.__max_people))
         print(self.__type_of_event)
         print(self.__date.strftime("%x"))
         print(self.__discription)
         if self.__is_open:
             print("Event is open")
         else:
-            print("Event is carently closed")
+            print("Event is currently closed")
         print()
 
     #users
