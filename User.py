@@ -28,7 +28,7 @@ class User:
     bookmarks = [] #list of events
     invites = [] 
 
-    def __init__(self, username, email, password, age, location, hobbies, friends, bookmarks):
+    def __init__(self, username, email, password, age, location, hobbies, friends = [], bookmarks = []):
         self.username = username
         self.email = email
         self.password = password
@@ -44,6 +44,11 @@ class User:
     def acceptInvite(self, indexOfInvite):
         self.invites[indexOfInvite].accept == True
         self.invites[indexOfInvite].event.addUser(self)
+
+    def joinEvent(self, event):
+        if event.eventIsOpen():
+            self.bookmarks.append(event)
+            event.addUser(self)
 
 
 
