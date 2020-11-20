@@ -7,7 +7,7 @@ class Creator(User):
     events = []     # array of Events
     invites = []    # array containing the invited Users 
 
-    def __init__(self, username, email, password, age, location, hobbies, friends, bookmarks):
+    def __init__(self, username, email, password, age, location, hobbies, friends = [], bookmarks = []):
         super().__init__(username, email, password, age, location, hobbies, friends, bookmarks)
 
     def createEvent(self, name, location, date, maxPeople, type, description):
