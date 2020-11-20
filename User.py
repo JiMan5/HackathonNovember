@@ -1,6 +1,3 @@
-from FriendRequest import FriendRequest
-
-
 Types = [
     'programming',
     'photos',
@@ -46,27 +43,23 @@ class User:
     def acceptInvite(self, indexOfInvite):
         self.invites[indexOfInvite].accept == True
         self.invites[indexOfInvite].event.addUser(self)
+        self.invites.pop(indexOfInvite)
 
     def joinEvent(self, event):
         if event.eventIsOpen():
             self.bookmarks.append(event)
             event.addUser(self)
 
-    def addFriendrequest(self, friendRequest):
-        self.friendRequests.append(friendRequest)
+    def addFriendRequest(self, otherUser):
+        self.friendRequests.append(otherUser)
 
     def sendFriendRequest(self, user):
-        friendRequest = FriendRequest(self, user)
-        user.addFriendrequest(friendRequest)
-
-    def addFriend(self, user):
-        self.friends.append(user)
+        user.addFriendRequest(self)
 
     def acceptFriendRequest(self, indexOfFriendReq):
-        friendRequest = self.friendRequests[indexOfFriendReq]
-        friendRequest.accept == True
-        self.addFriend(friendRequest.user1)
-        friendRequest.user1.addFriend(friendRequest.user2)
+        self.friends.append(self.friendRequests[indexOfFriendReq])
+        self.friendRequests[indexOfFriendReq].friends.append(self)
+        self.friendRequests.pop(indexOfFriendReq)
 
 
     
