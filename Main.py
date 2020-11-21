@@ -45,9 +45,4 @@ if __name__ == '__main__':
     for i in range(0, len(creator.events[0].users)):
         print(creator.events[0].users[i].username)
 
-    Users[2].sendFriendRequest(Users[3])
-    Users[2].acceptFriendRequest(0)
-
-    #for i in range(0, 2):
-    print(Users[2].friends[0].username)
-    print(Users[3].friends[0].username)
+    #add friends
