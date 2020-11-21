@@ -1,5 +1,3 @@
-#from User import User
-
 class Event:
     name = ""
     location = ""
@@ -10,14 +8,16 @@ class Event:
     typeOfEvent = ""
     isOpen = False
     users = [] * maxPeople
+    host = 0
 
-    def __init__(self, name, location, date, maxPeople, type, description):
+    def __init__(self, name, location, date, maxPeople, type, description, host):
         self.name = name
         self.location = location
         self.date = date
         self.maxPeople = maxPeople
         self.typeOfEvent = type
         self.setDescription(description)
+        self.host = host
 
     def setDescription(self, description):
         numOfWords = len(description.split())
@@ -36,6 +36,7 @@ class Event:
         return self.isOpen
 
     def showEvent(self):
+        print('Host: ' + self.host.username)
         print(self.name)
         print(self.location)
         print('max people: ' + str(self.maxPeople))
