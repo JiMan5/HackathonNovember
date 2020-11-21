@@ -44,18 +44,23 @@ Creators = [
 
 Events = [
     Creators[0].createEvent("party", "Toumpa", "06/11/2020", 5, Types[5], Description),
-    Creators[1].createEvent("superparty", "Kalamaria", "04/11/2020", 20, Types[4], Description),
-    Creators[2].createEvent("koronoparty", "Xarilaou", "08/11/2020", 15, Types[8], Description),
-    Creators[3].createEvent("sambaparty", "Kentro", "02/11/2020", 30, Types[9], Description),
-    Creators[4].createEvent("rooftop", "Kalamaria", "15/11/2020", 4, Types[2], Description),
-    Creators[5].createEvent("taraca babi", "Thermi", "15/11/2020", 17, Types[0], Description),
-    Creators[6].createEvent("lwl", "Kentro", "02/11/2020", 5, Types[11], Description),
-    Creators[7].createEvent("lwlparty", "Toumpa", "04/11/2020", 8, Types[9], Description)
+    Creators[0].createEvent("party1", "Triandria", "06/11/2020", 15, Types[5], Description),
+    Creators[0].createEvent("party2", "Kentro", "06/11/2020", 5, Types[4], Description),
+    Creators[0].createEvent("party3", "Kalamaria", "06/11/2020", 5, Types[5], Description),
+    Creators[0].createEvent("party4", "Sykies", "06/11/2020", 5, Types[5], Description)
+
+    # Creators[1].createEvent("superparty", "Kalamaria", "04/11/2020", 20, Types[4], Description),
+    # Creators[2].createEvent("koronoparty", "Kalamaria", "08/11/2020", 15, Types[8], Description),
+    # Creators[3].createEvent("sambaparty", "Kentro", "02/11/2020", 30, Types[9], Description),
+    # Creators[4].createEvent("rooftop", "Kalamaria", "15/11/2020", 4, Types[2], Description),
+    # Creators[5].createEvent("taraca babi", "Thermi", "15/11/2020", 17, Types[0], Description),
+    # Creators[6].createEvent("lwl", "Kentro", "02/11/2020", 5, Types[11], Description),
+    # Creators[7].createEvent("lwlparty", "Toumpa", "04/11/2020", 8, Types[9], Description)
 ]
 
 if __name__ == '__main__':
     print(Locations.get("Toumpa"))
-    print(Locations["Toumpa"])
+    print(Locations["Triandria"])
 
     distance = findDistance(Locations["Toumpa"], Locations["Kalamaria"])
     print("Distance: " + str(distance))
@@ -73,3 +78,7 @@ if __name__ == '__main__':
 
     for i in range(0, len(creator.events[0].users)):
         print(creator.events[0].users[i].username)
+
+
+    Users[0].recommendEvents(Events)
+    Users[0].recommendEvents(Events, Types[4])
