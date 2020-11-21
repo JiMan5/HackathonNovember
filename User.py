@@ -1,3 +1,26 @@
+import googlemaps
+
+class Point:
+    longitude = 0
+    latitude = 0
+
+    def __init__(self, longitude, latitude):
+        self.longitude = longitude
+        self.latitude = latitude
+
+def find_distance(point1, point2):
+    gmaps = googlemaps.Client(key = 'YK-XhBhYj2hAxi_jVui1Fd4flbgIh-q_SKTjTZYW9J8')
+    distance = gmaps.distance_matrix([str(point1.latitude) + " " + str(point1.longitude)],
+                                     [str(point2.latitude) + " " + str(point2.longitude)], mode='walking')[
+        'rows'][0]['elements'][0]
+    return distance
+
+
+point1 = Point(1, 2)
+point2 = Point(131, 232)
+print(find_distance(point1, point2))
+
+
 class User:
     username = ""
     email = ""
@@ -9,7 +32,7 @@ class User:
     friendRequests = []
     score = 0
     bookmarks = [] #list of events
-    invites = []    
+    invites = []
 
     def __init__(self, username, email, password, age, location, hobbies, friends = [], bookmarks = []):
         self.username = username
