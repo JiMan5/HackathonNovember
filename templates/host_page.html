@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='host_page_Styler.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css?dp-version=1578490236" />
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+
+
+</head>
+
+<body>
+    <form id="answers"></form>
+
+	<div id="features">
+		<label for="TYPES">Choose your event's type</label>
+		<input list="types" name="TYPES" id="myTypes">
+		<datalist id="types">
+			{%for i in range(0,13)%}
+				<option>{{Types[i]}}</option>
+			{%endfor%}
+		</datalist>
+
+		<label for="CALENDAR">Choose a date for your event</label>
+		<input type="date" name="CALENDAR" id="myDate">
+
+		<label for="TITLE">Choose title for your event</label>
+		<input type="text" name="TITLE" id="myTitle">
+
+		<label for="NUMBER" id="numberLabel">Choose how much people can join your event</label>
+		<input type="range" id="maxNum" name="NUMBER" 
+         min="5" max="30" onclick="Number();">
+
+         
+  		
+		<label for="DESCRIPTION">Write a brief description of your event</label>
+		<textarea maxlength="150" id="textArea" cols="20" rows="5" name="DESCRIPTION"></textarea>
+		
+
+        <button class="submit" id="check1" onclick="Retrieve();">Check</button>
+	</div>
+
+    
+
+	<div id="mapHolder">
+        <div id="panel"></div>
+		<div id="map"></div>
+        <div id="checkHolder">
+	       <button id="check2" onclick="RetrieveLocation();">Check</button>
+        </div>
+	</div>
+
+    <div id="lastStep">
+        <label for="DISCORD">Create a discord server and enter the link</label>
+        <input type="text" name="DISCORD" id="myDiscord">
+        <button class="submit" id="check3" onclick="End();">Upload this extraordinary event</button>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+
+    function Number(){
+
+        bar = document.getElementById('maxNum')
+        document.getElementById('numberLabel').innerHTML = 'Choose how much people can join your event (' + bar.value + ')'
+
+
+    }
+    
+    var types = document.getElementById('myTypes');
+    var date = document.getElementById('myDate');
+    var title = document.getElementById('myTitle');
+    var number = document.getElementById('maxNum');
+    var description = document.getElementById('textArea');
+    var submit = document.getElementById('check1');
+
+    function Retrieve(){
+        
+        if(true){
+            types.style.backgroundImage = "url('static/images/right.png')";
+            types.style.backgroundSize = "22px";
+            types.style.backgroundPosition = "97% 50%";
+            types.style.backgroundRepeat = "no-repeat";
+        }
+
+        if(true){
+            date.style.backgroundImage = "url('static/images/right.png')";
+            date.style.backgroundSize = "22px";
+            date.style.backgroundPosition = "97% 50%";
+            date.style.backgroundRepeat = "no-repeat";
+        }
+
+        if(true){
+            title.style.backgroundImage = "url('static/images/right.png')";
+            title.style.backgroundSize = "22px";
+            title.style.backgroundPosition = "97% 50%";
+            title.style.backgroundRepeat = "no-repeat";
+        }
+
+        if(true){
+            description.style.backgroundImage = "url('static/images/right.png')";
+            description.style.backgroundSize = "22px";
+            description.style.backgroundPosition = "97% 14%";
+            description.style.backgroundRepeat = "no-repeat";
+        }
+
+        if(true){
+            submit.style.backgroundImage = "url('static/images/right.png')";
+            submit.style.backgroundSize = "22px";
+            submit.style.backgroundPosition = "98% 50%";
+            submit.style.backgroundRepeat = "no-repeat";
+        }
+
+        formData = document.getElementById('answers')
+
+        var form = new FormData(formData)
+
+        form.append('type',types.value)
+        form.append('title',title.value)
+        form.append('number',number.value)
+        form.append('date',date.value)
+        form.append('description',description.value)
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', '/event_first_upload',true);
+
+        xhr.send(form);
+
+
+    }
+
+    var submit2 = document.getElementById('check2')
+    var panel = document.getElementById('panel')
+
+    function RetrieveLocation(){
+
+        if(true){
+            submit2.style.backgroundImage = "url('static/images/right.png')";
+            submit2.style.backgroundSize = "22px";
+            submit2.style.backgroundPosition = "98% 50%";
+            submit2.style.backgroundRepeat = "no-repeat";
+        }
+
+        formData = document.getElementById('answers')
+        console.log(panel.value)
+
+        var form = new FormData(formData)
+
+        form.append('location',panel.value)
+        
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', '/upload_location',true);
+
+        xhr.send(form);
+
+        map = document.getElementById('lastStep')
+        map.style.opacity = "1";
+        map.style.visibility = "visible";
+        map.style.transition = "1s";
+    }
+
+</script>
+
+<script  type="text/javascript" charset="UTF-8" >
+    
+var AUTOCOMPLETION_URL = 'https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json',
+    ajaxRequest = new XMLHttpRequest(),
+    query = '';
+
+/**
+ * If the text in the text box  has changed, and is not empty,
+ * send a geocoding auto-completion request to the server.
+ *
+ * @param {Object} textBox the textBox DOM object linked to this event
+ * @param {Object} event the DOM event which fired this listener
+ *///result
+function autoCompleteListener(textBox, event) {
+
+    if (query != textBox.value){
+        if (textBox.value.length >= 1){
+
+            /**
+             * A full list of available request parameters can be found in the Geocoder Autocompletion
+             * API documentation.
+             *
+             */
+            var params = '?' +
+                'query=' +  encodeURIComponent(textBox.value) +   // The search text which is the basis of the query
+                '&beginHighlight=' + encodeURIComponent('<mark>') + //  Mark the beginning of the match in a token.
+                '&endHighlight=' + encodeURIComponent('</mark>') + //  Mark the end of the match in a token.
+                '&maxresults=5' +  // The upper limit the for number of suggestions to be included
+                // in the response.  Default is set to 5.
+                '&apikey=' + APIKEY;
+            ajaxRequest.open('GET', AUTOCOMPLETION_URL + params );
+            ajaxRequest.send();
+        }
+    }
+    query = textBox.value;
+}
+
+
+/**
+ *  This is the event listener which processes the XMLHttpRequest response returned from the server.
+ */
+function onAutoCompleteSuccess() {
+    /*
+     * The styling of the suggestions response on the map is entirely under the developer's control.
+     * A representitive styling can be found the full JS + HTML code of this example
+     * in the functions below:
+     */
+    clearOldSuggestions();
+    addSuggestionsToPanel(this.response);  // In this context, 'this' means the XMLHttpRequest itself.
+    addSuggestionsToMap(this.response);
+}
+
+
+/**
+ * This function will be called if a communication error occurs during the XMLHttpRequest
+ */
+function onAutoCompleteFailed() {
+    alert('Ooops!');
+}
+
+// Attach the event listeners to the XMLHttpRequest object
+ajaxRequest.addEventListener("load", onAutoCompleteSuccess);
+ajaxRequest.addEventListener("error", onAutoCompleteFailed);
+ajaxRequest.responseType = "json";
+
+
+/**
+ * Boilerplate map initialization code starts below:
+ */
+
+
+// set up containers for the map  + panel
+var mapContainer = document.getElementById('map'),
+    suggestionsContainer = document.getElementById('panel');
+
+//Step 1: initialize communication with the platform
+var APIKEY = 'ALsuSbw4dGFCsUexbEdCxtPONBjanxTvII1_rMmbdDs';
+
+var platform = new H.service.Platform({
+    apikey: APIKEY,
+    useCIT: false,
+    useHTTPS: true
+});
+var defaultLayers = platform.createDefaultLayers();
+var geocoder = platform.getGeocodingService();
+var group = new H.map.Group();
+
+group.addEventListener('tap', function (evt) {
+    map.setCenter(evt.target.getGeometry());
+    openBubble(
+        evt.target.getGeometry(), evt.target.getData());
+}, false);
+
+
+//Step 2: initialize a map - this map is centered over Europe
+var map = new H.Map(mapContainer,
+    defaultLayers.vector.normal.map,{
+        center: {lat:52.5160, lng:13.3779},
+        zoom: 3
+    });
+
+map.addObject(group);
+
+//Step 3: make the map interactive
+// MapEvents enables the event system
+// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+// Create the default UI components
+var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+// Hold a reference to any infobubble opened
+var bubble;
+
+/**
+ * Function to Open/Close an infobubble on the map.
+ * @param  {H.geo.Point} position     The location on the map.
+ * @param  {String} text              The contents of the infobubble.
+ */
+function openBubble(position, text){
+    if(!bubble){
+        bubble =  new H.ui.InfoBubble(
+            position,
+            // The FO property holds the province name.
+            {content: '<small>' + text+ '</small>'});
+        ui.addBubble(bubble);
+    } else {
+        bubble.setPosition(position);
+        bubble.setContent('<small>' + text+ '</small>');
+        bubble.open();
+    }
+}
+
+
+/**
+ * The Geocoder Autocomplete API response retrieves a complete addresses and a `locationId`.
+ * for each suggestion.
+ *
+ * You can subsequently use the Geocoder API to geocode the address based on the ID and
+ * thus obtain the geographic coordinates of the address.
+ *
+ * For demonstration purposes only, this function makes a geocoding request
+ * for every `locationId` found in the array of suggestions and displays it on the map.
+ *
+ * A more typical use-case would only make a single geocoding request - for example
+ * when the user has selected a single suggestion from a list.
+ *
+ * @param {Object} response
+ */
+function addSuggestionsToMap(response){
+    /**
+     * This function will be called once the Geocoder REST API provides a response
+     * @param  {Object} result          A JSONP object representing the  location(s) found.
+     */
+    var onGeocodeSuccess = function (result) {
+            var marker,
+                locations = result.Response.View[0].Result,
+                i;
+
+            // Add a marker for each location found
+            for (i = 0; i < locations.length; i++) {
+                marker = new H.map.Marker({
+                    lat : locations[i].Location.DisplayPosition.Latitude,
+                    lng : locations[i].Location.DisplayPosition.Longitude
+                });
+                marker.setData(locations[i].Location.Address.Label);
+                group.addObject(marker);
+            }
+
+            map.getViewModel().setLookAtData({
+                bounds: group.getBoundingBox()
+            });
+            if(group.getObjects().length < 2){
+                map.setZoom(15);
+            }
+        },
+        /**
+         * This function will be called if a communication error occurs during the JSON-P request
+         * @param  {Object} error  The error message received.
+         */
+        onGeocodeError = function (error) {
+            alert('Ooops!');
+        },
+        /**
+         * This function uses the geocoder service to calculate and display information
+         * about a location based on its unique `locationId`.
+         *
+         * A full list of available request parameters can be found in the Geocoder API documentation.
+         * see: http://developer.here.com/rest-apis/documentation/geocoder/topics/resource-search.html
+         *
+         * @param {string} locationId    The id assigned to a given location
+         */
+        geocodeByLocationId = function (locationId) {
+            geocodingParameters = {
+                locationId : locationId
+            };
+
+            geocoder.geocode(
+                geocodingParameters,
+                onGeocodeSuccess,
+                onGeocodeError
+            );
+        }
+
+    /*
+     * Loop through all the geocoding suggestions and make a request to the geocoder service
+     * to find out more information about them.
+     */
+
+    response.suggestions.forEach(function (item, index, array) {
+        geocodeByLocationId(item.locationId);
+    });
+}
+
+
+/**
+ * Removes all H.map.Marker points from the map and adds closes the info bubble
+ */
+function clearOldSuggestions(){
+    group.removeAll ();
+    if(bubble){
+        bubble.close();
+    }
+}
+
+/**
+ * Format the geocoding autocompletion repsonse object's data for display
+ *
+ * @param {Object} response
+ */
+function addSuggestionsToPanel(response){
+    var suggestions = document.getElementById('suggestions');
+    suggestions.innerHTML = JSON.stringify(response, null, ' ');
+}
+
+
+
+
+
+var content  = '<br/><input type="text" class="location" id="auto-complete" style=" min-width:70%"  onkeyup="return autoCompleteListener(this, event);"><br/>';
+content  += '<div style=" opacity:1; "><pre style="max-height:10px"><code  id="suggestions" style="font-size: 0.1px;">' +'{}' + '</code></pre></div>';
+
+suggestionsContainer.innerHTML = content;
+
+    </script>
+

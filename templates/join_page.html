@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='join_page_Styler.css')}}">  
+
+
+
+
+</head>
+
+<body>
+	<form id="answers"></form>
+
+	<div id="filterIconContainer" onclick="openFilters();">
+		<img id="filterIcon" src="static/images/menu.png" width="40" height="40">
+	</div>
+
+	<div id="filters-senction" class="section" style="overflow-y: scroll;">
+		<button class='close' onclick="closeFilters();" style="top:38px; right: 60px;">
+        	<img src="static/images/info.png" width="45" height="45">
+        </button>
+        <div id="filters-section-title" class="section-title">Find events based on<br>your mood and tastes</div>
+        <i><br></i>
+        <i><br></i>
+
+        <a class="Basic" id="TypeFilter" onclick="TypeFilters();">Type of event</a>
+        <div id="types">
+        	{%for i in range(0,13)%}
+        		<a class="Basic" onclick="ChooseFilter(this);">{{Types[i]}}</a>
+        		<div id="Void"></div>
+        	{%endfor%}
+        </div>
+        
+        <div class="Line" id="firstLine"></div>
+        
+     
+        <a class="Basic" id="LocationFilter" onclick="LocationFilters();" >Location</a>
+        
+        <div class="Line"></div>
+        
+
+        <a class="Basic" id="DateFilter" onclick="DateFilters();" >Date</a>
+        
+        <div class="Line"></div>
+        
+
+        <a class="Basic" id="HostFilter" onclick="HostFilters();" >Host</a>
+        
+        <div class="Line"></div>
+        
+
+        <a class="Basic" id="numberFilter">Number of people<br><br><br></a>
+	</div>
+
+	{%for i in range(0,len)%}
+
+		<div class="recommendation" style=" background-image:url({{url_for('static', filename='images/'+TypeToImage[List[i][3]])}})" onclick="chooseEvent({{List[i]}});">
+			<div id='info'>
+				<div id='profile'>
+					<img src="static/images/man.png" id="profileImg" width="60" height="60">
+
+					<i id="name">{{List[i][0]}}</i>
+				</div>
+
+				<i id="date">{{List[i][1]}}<br></i>
+
+				<i id="address">{{List[i][2]}}<br></i>
+			</div>
+
+		</div>
+
+	{%endfor%}
+
+	<div><br><br><br></div>
+
+	<div id="info-section" class="section">
+        <button class='close' onclick="closeThis();">
+        	<img src="static/images/info.png" width="40" height="40">
+        </button>
+        <div id="info-section-title" class="section-title"></div>
+        <a class="Basic" id="host"></a>
+        <i><br></i>
+        <i><br></i>
+        <a class="Basic" id="location"></a>
+        <i><br></i>
+        <i><br></i>
+        <a class="Basic" id="calendar"></a>
+        <i><br></i>
+        <i><br></i>
+        <a class="Basic" id="type"></a>
+        <i><br></i>
+        <div id="line"></div>
+        <p id="info-section-text" class="section-text"></p>
+        <i><br></i>
+        <i><br></i>
+        <i><br></i>
+
+        <div class="progress">
+  			<div class="progress-value" id="myBar"></div>
+		</div>
+
+		<i><br></i>
+
+
+		<div id="buttons">
+			<a href="#" class="btn btn-white btn- animate" id="Join" onclick="clickJoin();">Join</a>
+			<a href="#" class="btn btn-white btn- animate" id="Pin" onclick="bookmark();">Pin</a>
+			
+		</div>
+
+		<div id='share'>
+			<a class='Basic' style="padding-left:34px; margin-top: 0px; width: 80%">Make this event grow bigger by sharing on your social media</a>
+			<div class="ShareIcons">
+
+                <div class="socialContainer">
+                    <image id="facebook" class="icon" src="{{ url_for('static',filename ='images/facebook.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="instagram" class="icon" src="{{ url_for('static',filename ='images/instagram.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="twitter" class="icon" style = "margin-left: 0px;" src="{{ url_for('static',filename ='images/twitter.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="pinterest" class="icon" src="{{ url_for('static',filename ='images/pinterest.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="snapchat" class="icon" src="{{ url_for('static',filename ='images/snapchat.png')}}"/>
+                </div>
+
+                <div class="socialContainer">
+                    <image id="discord" class="icon" style = "margin-left: 0px;"src="{{ url_for('static',filename ='images/discord.png')}}"/>
+                </div>
+
+            </div>
+
+            <div id="chat">
+            	<a class='Basic' style="padding-left:34px; width: 80%">Join the discussion</a>
+
+            	<div class="ShareIcons" style="margin-top: 0px;">
+
+	            	<div class="socialContainer" style="margin-top: -10px;">
+	                    <image id="discord" class="icon" src="{{ url_for('static',filename ='images/discord.png')}}"/>
+	                </div>
+
+	                <div class="socialContainer" style="margin-top: -10px;">
+	                    <image id="messenger" class="icon" src="{{ url_for('static',filename ='images/messenger.png')}}"/>
+	                </div>
+
+	            </div>
+
+	            <div id="Void1"></div>
+
+	            <div id="buttons2">
+					<a href="#" style = "margin-top:30px;" class="btn btn-white btn- animate" id="Leave" onclick="clickLeave();">Leave</a>
+					<a href="#" style = "margin-top:30px;" class="btn btn-white btn- animate" id="Pin" onclick="bookmark();">Pin</a>
+					<a href="#" style = "margin-top:30px;" class="btn btn-white btn- animate" id="Invite" onclick="invite();">Invite</a>
+					
+					
+				</div>
+
+				<input type="text" name="name" id="myInput" placeholder="Username" autocomplete="off">
+
+	            <div id="void">
+
+	            </div>
+
+            </div>
+
+         
+
+        </div>
+    </div>
+
+</body>
+
+
+{% block javascript %}
+    <script type="text/javascript">
+        var list = {{usernames | tojson}}
+
+        function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+autocomplete(document.getElementById("myInput"), list);
+
+	var inputText = document.getElementById("myInput");
+   	inputText.addEventListener("keyup", function(event) {
+      	if (event.keyCode === 13) {
+			event.preventDefault();
+			sendInvite();
+      }
+   	});
+
+   	function sendInvite(){
+		formData = document.getElementById('answers');
+			
+		var form = new FormData(formData);
+		
+        form.append('eventName', Chosen.element[4]);
+        form.append('userName', inputText.value);
+        
+		var xhr = new XMLHttpRequest();
+        
+        xhr.open('POST', '/inviteUser', true);
+
+        xhr.send(form);
+	}
+
+    </script>
+{% endblock %}
+
+<script type="text/javascript" src="static/javascript/joinPage.js"></script>
+
+</html>
+
