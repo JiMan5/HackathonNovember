@@ -1,19 +1,3 @@
-Types = [
-    'programming',
-    'photos',
-    'painting',
-    'music',
-    'maths',
-    'literature',
-    'gaming',
-    'cooking',
-    'cine',
-    'boardgame',
-    'basket',
-    'tennis',
-    'theater'
-]
-
 class User:
     username = ""
     email = ""
@@ -25,7 +9,7 @@ class User:
     friendRequests = []
     score = 0
     bookmarks = [] #list of events
-    invites = [] 
+    invites = []    
 
     def __init__(self, username, email, password, age, location, hobbies, friends = [], bookmarks = []):
         self.username = username
@@ -49,17 +33,5 @@ class User:
         if event.eventIsOpen():
             self.bookmarks.append(event)
             event.addUser(self)
-
-    def addFriendRequest(self, otherUser):
-        self.friendRequests.append(otherUser)
-
-    def sendFriendRequest(self, user):
-        user.addFriendRequest(self)
-
-    def acceptFriendRequest(self, indexOfFriendReq):
-        self.friends.append(self.friendRequests[indexOfFriendReq])
-        self.friendRequests[indexOfFriendReq].friends.append(self)
-        self.friendRequests.pop(indexOfFriendReq)
-
 
     
