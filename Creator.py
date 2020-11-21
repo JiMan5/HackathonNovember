@@ -11,7 +11,7 @@ class Creator(User):
         super().__init__(username, email, password, age, location, hobbies, friends, bookmarks)
 
     def createEvent(self, name, location, date, maxPeople, type, description):
-        myEvent = Event(name, location, date, maxPeople, type, description)
+        myEvent = Event(name, location, date, maxPeople, type, description, self)
         self.events.append(myEvent)
 
     def invite(self, user, event):
