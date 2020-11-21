@@ -30,6 +30,17 @@ Creators = [
     Creator("John", "John@gmail.com", "dscdsc", 18, "Toumpa", Types[9])
 ]
 
+Events = [
+    Creators[0].createEvent("party", "toumpa", "04/11/2020", 5, Types[4], Description),
+    Creators[1].createEvent("superparty", "kalamaria", "04/11/2020", 5, Types[4], Description),
+    Creators[2].createEvent("koronoparty", "xarilaou", "04/11/2020", 5, Types[4], Description),
+    Creators[3].createEvent("sambaparty", "kentro", "04/11/2020", 5, Types[4], Description),
+    Creators[4].createEvent("rooftop", "kalamaria", "04/11/2020", 5, Types[4], Description),
+    Creators[5].createEvent("taraca babi", "thermi", "04/11/2020", 5, Types[4], Description),
+    Creators[6].createEvent("lwl", "kentro", "04/11/2020", 5, Types[4], Description),
+    Creators[7].createEvent("lwlparty", "toumpa", "04/11/2020", 5, Types[4], Description),
+]
+
 if __name__ == '__main__':
     creator = Creator("John", "John@gmail.com", "dscdsc", 20, "Toumpa", Types[4])
 
