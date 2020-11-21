@@ -34,4 +34,5 @@ class User:
             self.bookmarks.append(event)
             event.addUser(self)
 
-    
+    def recommendEvents(self, events, filters = 0):
+        pass
