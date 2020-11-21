@@ -15,10 +15,12 @@ app = Flask(__name__)
 app.secret_key = 'hello'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///events.sqlite3'
+app.config['SQLALCHEMY_BINDS'] = {'events':'sqlite:///events.sqlite3'}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 dataBase = SQLAlchemy(app)
+
+global currEvent
 
 class users(dataBase.Model):
     _id = dataBase.Column("id", dataBase.Integer, primary_key=True)
@@ -202,7 +204,8 @@ class users(dataBase.Model):
         newEvents = oldEvents + title + '+'
         self.hostEventNames = newEvents
 
-class users(dataBase.Model):
+class events(dataBase.Model):
+    __bind_key__ = 'events'
     _id = dataBase.Column("id", dataBase.Integer, primary_key=True)
     hostName = dataBase.Column(dataBase.String(100))
     type = dataBase.Column(dataBase.String(100))
@@ -227,9 +230,16 @@ class users(dataBase.Model):
         self.members = None
         self.score = None
 
+    def location_upload(self,location):
+        self.location = location
+
+    def disdord_upload(self,discord):
+        self.discord = discord
 
 # global users
 # users = pd.DataFrame({'username':['example'],'email':['example@gmail.com'],'password':['1234']})
+
+
 
 @app.route('/')
 def index():
@@ -480,7 +490,8 @@ def inviteUser():
 def go_to_host_page():
     return render_template('host_page.html', Types=Types)
 
-@app.route('/event_first_upload',methods=['POST']):
+@app.route('/event_first_upload',methods=['POST'])
+def event_first_upload():
     find_user = users.query.filter_by(username=session['username']).first()
     type = request.form.get('type')
     date = request.form.get('date')
@@ -488,6 +499,38 @@ def go_to_host_page():
     number = request.form.get('number')
     description = request.form.get('description')
 
+    event = events(session['username'], type, date, title, number, description)
+    dataBase.session.add(event)
+    dataBase.session.commit()
+
+    global currEvent
+    currEvent = title
+
+    return ''
+
+@app.route('/upload_location',methods=['POST'])
+def upload_location():
+    find_event = events.query.filter_by(title=currEvent).first()
+    location = request.form.get('location')
+
+    find_event.location_upload(location)
+
+    dataBase.session.commit()
+
+    values = events.query.all()
+
+    EventsData = np.array(
+        [[values[0].hostName, values[0].type, values[0].date, values[0].title, values[0].number,
+          values[0].description, values[0].location]])
+
+    for item in values[1:]:
+        EventsData = np.append(EventsData,
+                               [[item.hostName, item.type, item.date, item.title, item.number, item.description, item.location]],
+                               axis=0)
+
+    print(EventsData)
+
+    return ""
 
 
 
