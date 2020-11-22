@@ -28,6 +28,10 @@ def calculatePoints(distance, sameType, ageDifference, maxPeople):
     return (-distance) * 0.3 + sameType * 0.3 + ageDifference * 0.25 + maxPeople * 0.15
 
 
+def calculatePointsForFriends(hobbies, age, distance):
+    return hobbies * 0.5 + age * 0.3 + (-distance) * 0.2
+
+
 def noFilters(types, dates, maxPeople, locations):
     return len(types) == 0 and len(dates) == 0 and len(maxPeople) == 0 and len(locations) == 0
 
@@ -37,13 +41,14 @@ class User:
     email = ""
     password = ""
     age = 0
-    location = ""
+    location = [] * 2
     hobbies = []  #list of Types hobbies
     friends = []  #list of users
     friendRequests = []
     score = 0
     bookmarks = []  #list of events
     invites = []
+    points = 0
 
     def __init__(self, username, email, password, age, location, hobbies, friends=[], bookmarks=[]):
         self.username = username
@@ -88,11 +93,12 @@ class User:
 
             for i in range(0, len(allEvents)):
                 if (allEvents[i].typeOfEvent in types or flag0) and (allEvents[i].date in dates or flag1) and\
-                        (allEvents[i].maxPeople in maxPeople or flag2) and (allEvents[i].location in locations or flag3):
+                        (allEvents[i].maxPeople in maxPeople or flag2) and \
+                        (allEvents[i].location in locations or flag3):
                     events.append(allEvents[i])
 
         for i in range(0, len(events)):
-            distance = findDistance(Locations.get(self.location), Locations.get(events[i].location))
+            distance = findDistance(self.location, events[i].location)
             sameType = 0
             if events[i].typeOfEvent in self.hobbies:
                 sameType = 1
@@ -115,4 +121,43 @@ class User:
 
         events.sort(key=lambda x: x.points, reverse=True)
 
-        return events
+        for i in range(0, len(events)):
+            print(events[i].name + " " + str(events[i].points))
+        print()
+
+    def numberOfCommonHobbies(self, users):
+        count = 0
+        for i in range(0, len(users)):
+            for j in range(0, len(self.hobbies)):
+                if self.hobbies[j] in users[i].hobbies:
+                    count += 1
+        return count
+
+    def recommendFriends(self, users):
+        for i in range(0, len(users)):
+            distance = findDistance(self.location, users[i].locations[1])
+            hobbies = 0
+            numOfComHobbies = self.numberOfCommonHobbies(users)
+            if numOfComHobbies >= 5:
+                hobbies = 2
+            elif numOfComHobbies >= 3:
+                hobbies = 1.5
+            elif numOfComHobbies >= 1:
+                hobbies = 1
+
+            ageDifference = self.age - users[i].age
+            if ageDifference < 0:
+                ageDifference = -ageDifference
+                agePoints = 0
+            if ageDifference < 5:
+                agePoints = 1
+            elif ageDifference < 10:
+                agePoints = 0.5
+
+            users[i].points = calculatePointsForFriends(hobbies, distance, agePoints)
+
+        users.sort(key=lambda x: x.points, reverse=True)
+
+        for i in range(0, len(users)):
+            print(users[i].username + " " + str(users[i].points))
+        print()
